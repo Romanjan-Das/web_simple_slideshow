@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simpler slideshow</title>
+    <style>
+        .slideshow_container{width: 300px; height:150px;}
+        .slideshow{width:inherit;height:inherit;display: flex;flex-direction: row; justify-content: flex-end;
+            border:black 1px solid;box-sizing: border-box;}
+        .slideshow>img{width: 0px;height:100%;opacity: 0;transition: 500ms;}
+        .slideshow_cntrl{width: inherit;height:20px;display: flex;justify-content: center;
+            align-items: center;box-sizing: border-box;}
+        .slideshow_cntrl>div{width: 5%; height: 20%; background-color: gainsboro; margin-left: 3px; margin-right: 3px;}
+    </style>
+    <script>
+        function slideshow(){
+            var slides=document.getElementsByClassName("slideshow")[0].childNodes; var interval=2500; var i=1;var j=1;
+            var k=1; var l=0; var m=l; var slide_cntrl=document.getElementsByClassName("slideshow_cntrl")[0];
+            var sld_ind=document.getElementsByClassName("slideshow_cntrl")[0].childNodes;
+            for(k=1;k<slides.length-1;k=k+2){
+                var x=document.createElement("div");
+                slide_cntrl.appendChild(x);
+            }
+            var slide_interval=setInterval(() => {
+                if(i>=slides.length){i=1;l=0;} 
+                slides[j].style.width="0px"; slides[j].style.opacity="0";
+                sld_ind[m].style.backgroundColor="gainsboro";
+                sld_ind[l].style.backgroundColor="grey";
+                slides[i].style.width="100%"; slides[i].style.opacity="1"; j=i; i=i+2; m=l; l++;
+            }, interval);
+        }
+    </script>
+</head>
+<body onload="slideshow();">
+    <div class="slideshow_container">
+        <div class="slideshow">
+            <img src="images/slide(1).jpg" alt="">
+            <img src="images/slide(2).jpg" alt="">
+            <img src="images/slide(3).jpg" alt="">
+            <img src="images/slide(4).jpg" alt="">
+            <img src="images/slide(5).jpg" alt="">
+            <img src="images/slide(6).jpg" alt="">
+            </div>
+        <div class="slideshow_cntrl"></div>
+    </div>
+    
+</body>
+</html>
